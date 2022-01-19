@@ -18,7 +18,23 @@ let value;
 
 check.addEventListener('click', () => {
   value = Number(numberInput.value);
+  numberCheck();
+  if (score.textContent < 0) {
+    score.textContent = 0;
+  }
+});
 
+again.addEventListener('click', () => {
+  numberInput.value = '';
+  numberDisplay.textContent = '?';
+  scoreDisplay = 20;
+  score.textContent = '20';
+  number = Math.floor(Math.random() * 20) + 1;
+  document.body.style.background = '#222';
+  console.log(number);
+});
+
+const numberCheck = function () {
   if (value < number && value > 0) {
     message.textContent = '📈Its a Higher Number📈';
     numberInput.value = '';
@@ -32,12 +48,12 @@ check.addEventListener('click', () => {
   } else if (value === number) {
     message.textContent = 'WINNER';
     numberDisplay.textContent = value;
+    document.body.style.background = '#60b347';
     if (highScore.textContent > score.textContent) {
       highScore.textContent = highScore.textContent;
     } else {
       highScore.textContent = score.textContent;
     }
-    document.body.style.background = '#60b347';
   } else {
     message.textContent = ' Enter Correct Number';
     document.body.style.background = '#ff0000';
@@ -46,14 +62,4 @@ check.addEventListener('click', () => {
     }, 2000);
     numberInput.value = '';
   }
-});
-
-again.addEventListener('click', () => {
-  numberInput.value = '';
-  numberDisplay.textContent = '?';
-  scoreDisplay = 20;
-  score.textContent = '20';
-  number = Math.floor(Math.random() * 20) + 1;
-  document.body.style.background = '#222';
-  console.log(number);
-});
+};
